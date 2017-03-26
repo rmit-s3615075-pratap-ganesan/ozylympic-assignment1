@@ -1,9 +1,9 @@
 
 public class Running extends AbstractEvent{
-	int minTime=10;
-	int maxTime=20;
+	static int minTime=10;
+	static int maxTime=20;
 	
-	 public Running(int minTime, int maxTime) {
+	 public Running() {
 		super(minTime, maxTime);
 	 }
 }
