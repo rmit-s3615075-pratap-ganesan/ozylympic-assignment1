@@ -72,7 +72,7 @@ public void gameSelect(){
 public void listAthletes(){
 	int randomSelect=ran.nextInt(16);
 	for(int i= randomSelect;i<randomSelect+4;i++){
-		// array to store random players from list
+		// arraylist to store random players from list
 	}
 }
 }
