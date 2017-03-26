@@ -33,8 +33,14 @@ public class AthleteDataBase {
 		athlete[23] = new Athlete("X01_ID", "XJohn",22, "XState",'A');
 		athlete[24] = new Athlete("Y01_ID", "YJohn",22, "YState",'R');
 		athlete[25] = new Athlete("Z01_ID", "ZJohn",22, "ZState",'R');
-		
-		
+				
 	}
+	
+	
+	
+	
+	
+	
+	
 
 }
