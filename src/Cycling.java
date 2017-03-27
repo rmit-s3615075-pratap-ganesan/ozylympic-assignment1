@@ -1,10 +1,10 @@
 
 public class Cycling extends AbstractEvent {
-int minTime=500;
-int maxTime=800;
+static int minTime=500;
+static int maxTime=800;
 
  
-public Cycling(int minTime, int maxTime) {
+public Cycling() {
 	super(minTime, maxTime);
 	// TODO Auto-generated constructor stub
 }

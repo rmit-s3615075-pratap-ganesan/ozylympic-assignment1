@@ -36,14 +36,14 @@ public class AthleteDataBase {
 				
 	}
 	
-	
-	
-	public void loadPlayers(ArrayList<Athlete> listOfPlayers,int numberOfAthletes,String gameType ){
+public void loadPlayers(ArrayList<Athlete> listOfPlayers,int numberOfAthletes,String gameType ){
 		
 		for(int i=0;i<numberOfAthletes;i++){
 			listOfPlayers.add(athlete[1]); // get the  random number between 0 and 25 inplace of 1 based on the game type.
 		}
 	}
+	
+	
 	
 	
 	
