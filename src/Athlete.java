@@ -1,6 +1,7 @@
+import java.util.Comparator;
+import java.util.Random;
 
-
-public class Athlete {
+public class Athlete implements Comparable<Athlete>, Comparator<Athlete> {
 	
 	private int totalPoints;
 	private String athleteId;
@@ -8,7 +9,18 @@ public class Athlete {
 	private int athleteAge;
 	private String athleteState;
 	private char athleteType;
+	private int finishTimer;
 	
+	public int getFinishTimer() {
+		return finishTimer;
+	}
+
+
+	public void setFinishTimer(int finishTimer) {
+		this.finishTimer = finishTimer;
+	}
+
+
 	public int getTotalPoints() {
 		return totalPoints;
 	}
@@ -79,8 +91,25 @@ public class Athlete {
 	}
 
 
-	public void compete(){
-		System.out.println("Inside the compete: generating the random numbers");
+	public void compete(int minTimer, int maxTimer){
+		Random random = new Random();
+		int finishTimer = random.nextInt(maxTimer-minTimer)+minTimer;
+		this.setFinishTimer(finishTimer);
+		
+	}
+
+
+	@Override
+	public int compare(Athlete firstAthlete, Athlete secondAthlete) {
+		// TODO Auto-generated method stub
+		return firstAthlete.getFinishTimer() - secondAthlete.getFinishTimer();
+	}
+
+
+	@Override
+	public int compareTo(Athlete athlete) {
+		// TODO Auto-generated method stub
+		return this.compare(this, athlete);
 	}
 
 }
