@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 public class AthleteDataBase {
 	
@@ -36,12 +39,29 @@ public class AthleteDataBase {
 				
 	}
 	
-public void loadPlayers(ArrayList<Athlete> listOfPlayers,int numberOfAthletes,String gameType ){
-		
-		for(int i=0;i<numberOfAthletes;i++){
-			listOfPlayers.add(athlete[1]); // get the  random number between 0 and 25 inplace of 1 based on the game type.
+public void loadAthlete(Set<Athlete> listOfPlayers,int numberOfAthletes,char gameType){
+		Random randomGenerator = new Random();
+		int randomNumber;
+		boolean assignedPlayer;
+		char assignedPlayerType;
+		while(listOfPlayers.size()!=8){
+			assignedPlayer = false;
+			while(!assignedPlayer){
+			randomNumber = randomGenerator.nextInt(26);
+			assignedPlayerType = this.athlete[randomNumber].getAthleteType();
+			if(assignedPlayerType == gameType || assignedPlayerType== 'A'){
+				try{
+				listOfPlayers.add(this.athlete[randomNumber]);
+				assignedPlayer = true;
+				System.out.println("Inside the loadAthlete - Assigned successfully "+this.athlete[randomNumber].getAthleteId()+" "+this.athlete[randomNumber].getAthleteType());
+				}catch(Exception e){System.out.println("Cannot assign duplicate values");}		
+				
+				}
+			}
 		}
 	}
+
+
 	
 	
 	
