@@ -1,4 +1,4 @@
-package athletedatabase;
+import java.util.ArrayList;
 
 public class AthleteDataBase {
 	
@@ -33,8 +33,20 @@ public class AthleteDataBase {
 		athlete[23] = new Athlete("X01_ID", "XJohn",22, "XState",'A');
 		athlete[24] = new Athlete("Y01_ID", "YJohn",22, "YState",'R');
 		athlete[25] = new Athlete("Z01_ID", "ZJohn",22, "ZState",'R');
-		
-		
+				
 	}
+	
+public void loadPlayers(ArrayList<Athlete> listOfPlayers,int numberOfAthletes,String gameType ){
+		
+		for(int i=0;i<numberOfAthletes;i++){
+			listOfPlayers.add(athlete[1]); // get the  random number between 0 and 25 inplace of 1 based on the game type.
+		}
+	}
+	
+	
+	
+	
+	
+	
 
 }
