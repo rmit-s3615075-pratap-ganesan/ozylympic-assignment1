@@ -37,7 +37,7 @@ public class Game {
 			return event;
 		}
 	
-		
+	
 		public void setAthleteList(Set<Athlete> athleteList) {
 			this.athleteList = athleteList;
 		}

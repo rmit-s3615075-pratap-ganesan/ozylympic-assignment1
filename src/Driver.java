@@ -1,9 +1,20 @@
+
+import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Driver {
 	Scanner sc=new Scanner(System.in);
 	Random ran=new Random();
+	Game game;
+	int i=1;
+   int userPrediction;
+	Athlete currentAthlete;
+	Set<Athlete> athleteList = new HashSet<Athlete>();
 public static void main(String args[]){
 Driver d=new Driver();
 d.menu();
@@ -14,9 +25,10 @@ public int getNumberOfAthletes(){
 }
  int totalAthletes= getNumberOfAthletes();
 public void menu(){
+	try{
 	System.out.println("===========================================");
 	System.out.println("            OZYMPLIC GAMES");
-	System.out.println("===========================================\n");
+	System.out.println("============================================");
 	System.out.println("1. Select a Game to run ");
 	System.out.println("2. Predict the Winner of Game ");
 	System.out.println("3. Start the Game ");
@@ -26,53 +38,123 @@ public void menu(){
 	int selec =sc.nextInt();
 	switch(selec){
 	case 1:
-		if(totalAthletes > 4){
+	//	if(totalAthletes > 4){
 		gameSelect();
-		}
-		else if(totalAthletes < 4){
+		//}
+	/*	else if(totalAthletes < 4){
 			System.out.println("Not Enough Athletes For This Game");
-		}
+		}  */
 		break;
 	case 2:
-		//will display all players
+	predictWinner();
 		break;
 	case 3:
-		//start the game and generate values
+	     startGame();
 		break;
 	case 4:
-		//display the output to user
+		gameResult();
+		menu();
 		break;
 	case 5:
-		//display athletes with final result
+		athleteDisplay();
 		break;
 	case 6:
 		System.exit(0) ;
 		break;
 	}
+	if(selec > 6){
+		System.out.println("Wrong Input Try Again");
+		menu();
+	}
+	}
+	catch(Exception e){
+		System.out.println("ERROR");	
+	}
+
+	
 }
 public void gameSelect(){
-	System.out.println("========== PLEASE SELECT A GAME EVENT ==========\n");
+	try{
+	System.out.println("========== PLEASE SELECT A GAME EVENT ==========");
 	System.out.println("1) SWIMMING \n");
-	System.out.println("2) CYCLING \n");
-	System.out.println("3) RUNNING \n");
+	System.out.println("2) RUNNING \n");
+	System.out.println("3) CYCLING \n");
 	int choice=sc.nextInt();
 	if(choice==1){
-		new Game(new Swimming(),totalAthletes);
+		System.out.println("********** Game selected is SWIMMING **********");
+		new AthleteDataBase().loadAthlete(athleteList,2,'S');
+		game = new Game(new Swimming(),athleteList);
+		menu();
+	
 	}
 	else if(choice==2){
-	    new Game(new Cycling(),totalAthletes);
+		System.out.println("********** Game selected is RUNNING **********");
+		new AthleteDataBase().loadAthlete(athleteList,8,'R');
+		game = new Game(new Running(),athleteList);
+		menu();
+		
 	}
 	else if(choice==3){
-		new Game(new Running(),totalAthletes);
+		System.out.println("********** Game selected is CYCLING **********");
+		new AthleteDataBase().loadAthlete(athleteList,8,'C');
+		game = new Game(new Cycling(),athleteList);
+		menu();
+	
 	}
 	else{
 		System.out.println("Please Give Right Input");
 	}
-}
-public void listAthletes(){
-	int randomSelect=ran.nextInt(16);
-	for(int i= randomSelect;i<randomSelect+4;i++){
-		// arraylist to store random players from list
+	}
+	catch(Exception e){
+		System.out.println("ERROR");
 	}
 }
+
+public void predictWinner(){
+	try{
+	Iterator iterator = athleteList.iterator();
+	while(iterator.hasNext()){
+		currentAthlete = (Athlete)iterator.next();
+		System.out.println(i +")"+currentAthlete.getAthleteId());
+		 i++;
+	}
+	System.out.println("===== Enter your Prediction =====");
+	 userPrediction =sc.nextInt()-1;
+	 
+   System.out.println("=================================");
+   List currentList = new ArrayList(this.athleteList);
+   Athlete currentAthlete = (Athlete)currentList.get(userPrediction);
+   System.out.println("User Choice is "+ currentAthlete.getAthleteName());
+   menu();
+	}
+	catch(Exception e){
+		System.out.println("ERROR");
+		menu();
+	}
 }
+public void startGame(){
+	game.initiateGame();
+	game.rewardWinner();
+	System.out.println("================ Game Started ==================");
+	menu();
+}
+public void athleteDisplay(){
+	System.out.println("Athlete at First Position is "+game.firstAthlete.getAthleteName()+" "+game.firstAthlete.getFinishTimer());
+	System.out.println("Athlete at Second Position is "+game.secondAthlete.getAthleteName()+" "+game.secondAthlete.getFinishTimer());
+	System.out.println("Athlete at Third Position is "+game.thirdAthlete.getAthleteName()+" "+game.thirdAthlete.getFinishTimer());	
+	System.out.println("Winner of game is "+game.getWinnerName());
+}
+public void gameResult(){
+	List currentList = new ArrayList(this.athleteList);
+	   Athlete currentAthlete = (Athlete)currentList.get(userPrediction);
+	System.out.println("Winner of this game is "+game.getWinnerName());
+	System.out.println("User Prediction for the game was "+currentAthlete.getAthleteName());
+	if(currentAthlete.equals(game.firstAthlete)){
+		System.out.println("***** Congrats User Prediction was correct *****");
+	}
+		else{
+			System.out.println("===== User selected Athlete was not in First place =====");
+		}
+	}
+}
+
