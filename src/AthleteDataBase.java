@@ -7,10 +7,12 @@ import java.util.Set;
 public class AthleteDataBase {
 	
 	private Athlete athlete[];
+	private Referee referee[];
 	
 	public AthleteDataBase(){
 		
 		athlete = new Athlete[26];
+		referee = new Referee[5];
 		athlete[0] = new Athlete("A01_ID", "AJohn",22, "AState",'C');
 		athlete[1] = new Athlete("B01_ID", "BJohn",22, "BState",'S');
 		athlete[2] = new Athlete("C01_ID", "CJohn",22, "CState",'R');
@@ -37,7 +39,14 @@ public class AthleteDataBase {
 		athlete[23] = new Athlete("X01_ID", "XJohn",22, "XState",'A');
 		athlete[24] = new Athlete("Y01_ID", "YJohn",22, "YState",'R');
 		athlete[25] = new Athlete("Z01_ID", "ZJohn",22, "ZState",'R');
-				
+		
+		
+		referee[0] = new Referee("Ref_A01","RefereeA",28,"RefAState");
+		referee[1] = new Referee("Ref_B01","RefereeB",28,"RefBState");
+		referee[2] = new Referee("Ref_C01","RefereeC",28,"RefCState");
+		referee[3] = new Referee("Ref_D01", "RefereeD", 28, "RefDState");
+		referee[4] = new Referee("Ref_E01","RefereeE",30,"RefeEState");
+		
 	}
 	
 public void loadAthlete(Set<Athlete> athleteList,int numberOfAthletes,char gameType){
