@@ -1,5 +1,7 @@
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
 public class Athlete implements Comparable<Athlete>, Comparator<Athlete> {
 	
@@ -10,6 +12,7 @@ public class Athlete implements Comparable<Athlete>, Comparator<Athlete> {
 	private String athleteState;
 	private char athleteType;
 	private int finishTimer;
+	Set<Athlete> athleteList;
 	
 	public int getFinishTimer() {
 		return finishTimer;
@@ -90,7 +93,14 @@ public class Athlete implements Comparable<Athlete>, Comparator<Athlete> {
 		this.athleteType = athleteType;
 	}
 
-
+	public void athleteDisplay(){
+		Athlete currentAthlete;
+		Iterator iterator = this.athleteList.iterator();
+		while(iterator.hasNext()){
+			currentAthlete = (Athlete)iterator.next();
+			System.out.println(currentAthlete);
+	}
+	}
 	public void compete(int minTimer, int maxTimer){
 		Random random = new Random();
 		int finishTimer = random.nextInt(maxTimer-minTimer)+minTimer;
