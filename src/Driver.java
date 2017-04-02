@@ -15,10 +15,10 @@ public class Driver {
 	int selec;                            //storing user selection choice
 	int numberofAthletes;
  
-Set<Athlete> athleteList = new HashSet<Athlete>();
-public static void main(String args[]){
-   Driver d=new Driver();
-   d.menu();
+	Set<Athlete> athleteList = new HashSet<Athlete>();
+	public static void main(String args[]){
+	Driver d=new Driver();
+	d.menu();
 }
 /*
  * getting number of athletes participating using random number
