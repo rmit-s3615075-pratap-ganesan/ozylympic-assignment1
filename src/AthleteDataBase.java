@@ -66,7 +66,7 @@ public void loadAthlete(Set<Athlete> athleteList,int numberOfAthletes,char gameT
 				try{
 				athleteList.add(this.athlete[randomNumber]);
 				assignedPlayer = true;
-				System.out.println(this.athlete[randomNumber].getAthleteId()+" "+this.athlete[randomNumber].getAthleteType());
+			//	System.out.println(this.athlete[randomNumber].getAthleteId()+" "+this.athlete[randomNumber].getAthleteType());
 				}catch(Exception e){System.out.println("Cannot assign duplicate values");}		
 				
 				}

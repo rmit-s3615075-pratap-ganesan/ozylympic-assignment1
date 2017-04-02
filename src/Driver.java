@@ -37,13 +37,9 @@ public void menu(){
 	    selec =sc.nextInt();
 	switch(selec){
 	case 1:
-	  if(getNumberOfAthletes() > 4){
+	 
 		 isGameSelected=true;
 		gameSelect();     //calling game select method
-		}
-		else if(getNumberOfAthletes()< 4){
-		System.out.println("Game is cancelled due to insufficient players");	
-		}  
 		break;
 	case 2:
 		if(isGameSelected ==true){
@@ -55,9 +51,14 @@ public void menu(){
 	case 3:
 		if(USER_PREDICTION != 0){
 		isGameStarted=true;
-		startGame();                 //calling method to start Game
-		gameResult();               //calling method to display result
+		if(getNumberOfAthletes()>4){
+			startGame();                 //calling method to start Game
+			gameResult();	
 		}else
+		{ System.out.println("Game is cancelled due to insufficient players");
+		              //calling method to display result
+		}}
+		else
 		System.out.println("Predict Winner First");
 		break;
 	case 4:
