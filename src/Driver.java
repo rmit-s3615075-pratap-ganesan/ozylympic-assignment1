@@ -15,10 +15,10 @@ public class Driver {
 	int selec;                            //storing user selection choice
 	int numberofAthletes;
  
-	Set<Athlete> athleteList = new HashSet<Athlete>();
-	public static void main(String args[]){
-	Driver d=new Driver();
-	d.menu();
+Set<Athlete> athleteList = new HashSet<Athlete>();
+public static void main(String args[]){
+   Driver d=new Driver();
+   d.menu();
 }
 /*
  * getting number of athletes participating using random number
@@ -29,7 +29,8 @@ public int getNumberOfAthletes(){
 }
  /*
   * providing menu interface to user
-  * user program interaction happens here
+  * user program interaction 
+ here
   */
 public void menu(){	
 	try{
@@ -49,7 +50,8 @@ public void menu(){
 	    System.out.println("Select Game First");
 		break;
 	case 3:
-		if(USER_PREDICTION != 0){
+
+		if(USER_PREDICTION > 0){
 		isGameStarted=true;
 		if(getNumberOfAthletes()>4){
 			startGame();                 //calling method to start Game
@@ -190,6 +192,11 @@ public void athleteDisplay(){
 	System.out.println("Athlete at First Position is "+game.firstAthlete.getAthleteName()+" "+game.firstAthlete.getFinishTimer());
 	System.out.println("Athlete at Second Position is "+game.secondAthlete.getAthleteName()+" "+game.secondAthlete.getFinishTimer());
 	System.out.println("Athlete at Third Position is "+game.thirdAthlete.getAthleteName()+" "+game.thirdAthlete.getFinishTimer());	
+	Iterator iterator = athleteList.iterator();
+	while(iterator.hasNext()){
+		currentAthlete = (Athlete)iterator.next();
+		System.out.println(currentAthlete.getAthleteName()+" "+currentAthlete.getFinishTimer());
+	}
 	System.out.println("WINNER OF GAME IS  "+game.getWinnerName());
 	System.out.println("===================== END =====================");
 	}
