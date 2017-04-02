@@ -56,26 +56,52 @@ public class DobleDriver {
 			
 			switch(selectedOption){
 			case 1:
-				numberOfAthletes = getNumberOfAthletes();
-				gameSelect();
+				 if(getNumberOfAthletes() > 4){
+					 isGameSelected=true;
+						numberOfAthletes = getNumberOfAthletes();
+					gameSelect();     //calling game select method
+					}
+					else if(getNumberOfAthletes()< 4){
+					System.out.println("Not Enough Athletes For This Game");	
+					}  
+			
 				break;
 				
 			case 2:
 				System.out.println("Predict user");
+				if(isGameSelected ==true){
+				    isWinnerPredicted=true;
+				    predictWinner();              //calling method to predict winner
+					}	else 
+				    System.out.println("Select Game First");
 				break;
 			
 			case 3:
 				System.out.println("start the game");
-				
+				if(USER_PREDICTION > 0){
+					isGameStarted=true;
+					startGame();                 //calling method to start Game
+					gameResult();               //calling method to display result
+					}else
+					System.out.println("Predict Winner First");
+					break;
 				break;
 				
 			case 4:
-				displayAllGames();
-				System.out.println("display all the game result");
+				if(isGameStarted==true){
+					displayAllGames();
+					System.out.println("display all the game result");
+				}else
+				System.out.println("First Start Game ");
+				
 				break;
 				
 			case 5:
 				System.out.println("display all the athlete result");
+				if(isGameStarted==true){
+					 athleteDisplay();       //displaying the final result of Game
+				} else
+					System.out.println("First Play Game");
 				break;
 				
 			case 6:
@@ -84,18 +110,12 @@ public class DobleDriver {
 				
 			default: 
 				System.out.println("Please select the correct input");
-			
 			}
-			
-			
 		}while(i!=6);
 		}catch(Exception e){
 			System.out.println("Please enter a correct input");
 			menu();
 		}
-
-		
-		
 	}
 	
 	
