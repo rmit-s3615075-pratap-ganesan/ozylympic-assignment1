@@ -15,10 +15,10 @@ public class Driver {
 	int selec;                            //storing user selection choice
 	int numberofAthletes;
  
-	Set<Athlete> athleteList = new HashSet<Athlete>();
-	public static void main(String args[]){
-	Driver d=new Driver();
-	d.menu();
+Set<Athlete> athleteList = new HashSet<Athlete>();
+public static void main(String args[]){
+   Driver d=new Driver();
+   d.menu();
 }
 /*
  * getting number of athletes participating using random number
@@ -29,7 +29,8 @@ public int getNumberOfAthletes(){
 }
  /*
   * providing menu interface to user
-  * user program interaction happens here
+  * user program interaction 
+ here
   */
 public void menu(){	
 	try{
@@ -42,7 +43,7 @@ public void menu(){
 		gameSelect();     //calling game select method
 		}
 		else if(getNumberOfAthletes()< 4){
-		System.out.println("Game is cancelled due to insufficient players");	
+		System.out.println("Not Enough Athletes For This Game");	
 		}  
 		break;
 	case 2:
