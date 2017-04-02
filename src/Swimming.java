@@ -1,10 +1,12 @@
 import java.text.DecimalFormat;
 
 public class Swimming extends AbstractEvent{
-	 static int minTime=100;
-	 static int maxTime=200;
-	 static int count=0;
-	
+	 static int minTime=100;          //minimum time for event Swimming
+	 static int maxTime=200;          //maximum time for event Swimming
+	 static int count=0;               //counting number of times event played
+		/*
+		 * method to pass minimum and maximum time of event to parent class
+	    */
 	 public Swimming() {
 		super(minTime,maxTime);
 	 }
@@ -16,7 +18,9 @@ public class Swimming extends AbstractEvent{
 
 		return formatted;
 	}
-
+	/*
+	 *overriding parent method to fetch name of event
+	 */
 	@Override
 	public char getEventName() {
 		// TODO Auto-generated method stub

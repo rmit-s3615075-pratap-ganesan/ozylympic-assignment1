@@ -1,9 +1,9 @@
 
 public abstract class Participants {
-private String id;
-private String name;
-private int age;
-private String state;
+private String id;      //unique id of Participants
+private String name;    //name of participants
+private int age;        //age of participant
+private String state;   //state of participant
 
 public Participants(String id,String name,int age,String state){
 	this.id=id;
