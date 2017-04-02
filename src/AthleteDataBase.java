@@ -6,13 +6,16 @@ import java.util.Set;
 
 public class AthleteDataBase {
 	
-	private Athlete athlete[];
-	private Referee referee[];
+	public static  Athlete athlete[];
+	public static Referee referee[];
+	Random randomGenerator = new Random();
+	int totalParticipatingAthletes = 26;
+	int totalParticipatingReferee = 5;
 	
 	public AthleteDataBase(){
 		
-		athlete = new Athlete[26];
-		referee = new Referee[5];
+		athlete = new Athlete[totalParticipatingAthletes];
+		referee = new Referee[totalParticipatingReferee];
 		athlete[0] = new Athlete("A01_ID", "AJohn",22, "AState",'C');
 		athlete[1] = new Athlete("B01_ID", "BJohn",22, "BState",'S');
 		athlete[2] = new Athlete("C01_ID", "CJohn",22, "CState",'R');
@@ -50,7 +53,7 @@ public class AthleteDataBase {
 	}
 	
 public void loadAthlete(Set<Athlete> athleteList,int numberOfAthletes,char gameType){
-		Random randomGenerator = new Random();
+		
 		int randomNumber;
 		boolean assignedPlayer;
 		char assignedPlayerType;
@@ -70,6 +73,14 @@ public void loadAthlete(Set<Athlete> athleteList,int numberOfAthletes,char gameT
 			}
 		}
 	}
+
+
+ public Referee assginReferee(){
+	 Referee assignedReferee;
+	 assignedReferee =  referee[randomGenerator.nextInt(totalParticipatingReferee)];
+	 return assignedReferee;
+	 
+ }
 
 
 	
