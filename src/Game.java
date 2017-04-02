@@ -18,6 +18,7 @@ public class Game {
 	Athlete firstAthlete;
 	Athlete secondAthlete;
 	Athlete thirdAthlete;
+	static AthleteDataBase db;
 		
 	
 		
@@ -30,6 +31,7 @@ public class Game {
 			this.setEvent(event);
 			this.setGameID(event.getEventName()+event.getCount());
 			this.setAthleteList(athleteList);
+			this.referee = db.assginReferee();
 		}
 	
 	
@@ -80,12 +82,12 @@ public class Game {
 			 this.secondAthlete.setTotalPoints(this.secondAthlete.getTotalPoints()+secondPrize);
 			 this.thirdAthlete = (Athlete)toSort.get(2);
 			 this.thirdAthlete.setTotalPoints(this.thirdAthlete.getTotalPoints()+thirdPrize);
+			 this.referee.loadAthletes(toSort);
+			
 		 }
 
 
-	    public String getWinnerName(){
-	    	return this.firstAthlete.getAthleteName();	
-	    }
+	    
 	
 	
 	
