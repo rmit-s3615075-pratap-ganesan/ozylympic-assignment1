@@ -54,7 +54,8 @@ public void menu(){
 	    System.out.println("Select Game First");
 		break;
 	case 3:
-		if(USER_PREDICTION != 0){
+
+		if(USER_PREDICTION > 0){
 		isGameStarted=true;
 		startGame();                 //calling method to start Game
 		gameResult();               //calling method to display result
@@ -190,6 +191,11 @@ public void athleteDisplay(){
 	System.out.println("Athlete at First Position is "+game.firstAthlete.getAthleteName()+" "+game.firstAthlete.getFinishTimer());
 	System.out.println("Athlete at Second Position is "+game.secondAthlete.getAthleteName()+" "+game.secondAthlete.getFinishTimer());
 	System.out.println("Athlete at Third Position is "+game.thirdAthlete.getAthleteName()+" "+game.thirdAthlete.getFinishTimer());	
+	Iterator iterator = athleteList.iterator();
+	while(iterator.hasNext()){
+		currentAthlete = (Athlete)iterator.next();
+		System.out.println(currentAthlete.getAthleteName()+" "+currentAthlete.getFinishTimer());
+	}
 	System.out.println("WINNER OF GAME IS  "+game.getWinnerName());
 	System.out.println("===================== END =====================");
 	}
