@@ -68,7 +68,7 @@ public class Game {
 				currentAthlete = (Athlete)iterator.next();
 				currentAthlete.compete(this.event.getminTimer(),this.event.getmaxTimer());
 			}
-			
+						
 		}
 		
 		
@@ -86,7 +86,11 @@ public class Game {
 			
 		 }
 
-
+		
+		public String getWinnerName(){
+			return this.firstAthlete.getAthleteName();
+			
+		}
 	    
 	
 	
