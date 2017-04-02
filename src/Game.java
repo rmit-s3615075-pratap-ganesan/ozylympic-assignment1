@@ -13,6 +13,7 @@ public class Game {
 	int thirdPrize = 1;
 	String gameID;
 	Event event;
+	Referee referee;
 	Set<Athlete> athleteList;
 	Athlete firstAthlete;
 	Athlete secondAthlete;

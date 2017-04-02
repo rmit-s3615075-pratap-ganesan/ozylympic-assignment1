@@ -29,8 +29,8 @@ public void menu(){
 	try{
 		int i=0;
 		options();
-		   int selec =sc.nextInt();
-	switch(selec){
+		   int selection =sc.nextInt();
+	switch(selection){
 	case 1:
 	//	if(totalAthletes > 4){
 		gameSelect();
@@ -81,7 +81,7 @@ public void menu(){
 		break;
 	}
 
-	if(selec > 6){
+	if(selection > 6){
 		System.out.println("Wrong Input Try Again");
 		menu();
 		}
