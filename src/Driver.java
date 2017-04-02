@@ -42,7 +42,7 @@ public void menu(){
 		gameSelect();     //calling game select method
 		}
 		else if(getNumberOfAthletes()< 4){
-		System.out.println("Not Enough Athletes For This Game");	
+		System.out.println("Game is cancelled due to insufficient players");	
 		}  
 		break;
 	case 2:
