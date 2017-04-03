@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * @author Pratap
  */
-public class DobleDriver {
+public class Driver {
 	
 	Scanner sc=new Scanner(System.in);    //taking user input
 	Random randomNumber =new Random();              //generating random number
@@ -34,7 +34,7 @@ public class DobleDriver {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		DobleDriver driver = new DobleDriver();
+		Driver driver = new Driver();
 		driver.menu();
 		
 	}
