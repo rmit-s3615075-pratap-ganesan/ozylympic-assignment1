@@ -14,9 +14,9 @@ public class Referee extends Participant{
 	}
 
 	public void displayResult(){
-		System.out.println("Winner: "+athleteList.get(firstPlace));
-		System.out.println("First Runner up: "+athleteList.get(secondPlace));
-		System.out.println("Second Runner up: "+athleteList.get(thirdPlace));
+		System.out.println("Winner: "+athleteList.get(firstPlace).getId()+" "+athleteList.get(firstPlace).getName());
+		System.out.println("First Runner up: "+athleteList.get(secondPlace).getId()+" "+athleteList.get(secondPlace).getName());
+		System.out.println("Second Runner up: "+athleteList.get(thirdPlace).getId()+" "+athleteList.get(thirdPlace).getName());
 		
 		
 	}

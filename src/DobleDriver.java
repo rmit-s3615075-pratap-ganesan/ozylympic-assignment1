@@ -23,7 +23,7 @@ public class DobleDriver {
 	int numberOfAthletes;
 	final int numberOfMandatoryAthletes = 5;
 	Set<Athlete> athleteList = new HashSet<Athlete>();
-	static AthleteDataBase db;
+	AthleteDataBase db;
 	
 	
 	
@@ -56,26 +56,45 @@ public class DobleDriver {
 			
 			switch(selectedOption){
 			case 1:
+				isGameSelected=true;
 				numberOfAthletes = getNumberOfAthletes();
 				gameSelect();
 				break;
 				
 			case 2:
-				System.out.println("Predict user");
+				if(isGameSelected){
+					isWinnerPredicted=true;
+					System.out.println("Predict user");}
+				else{
+					System.out.println("Please select the Game first");
+				}
 				break;
 			
 			case 3:
-				System.out.println("start the game");
-				
+				if(isGameSelected){
+					if(isWinnerPredicted){
+						startGame();
+						isGameStarted = true;
+					}
+					else{
+						System.out.println("Please predict the winner first");
+					}
+
+				}else{
+					System.out.println("Please select the Game first");
+				}
 				break;
 				
 			case 4:
-				displayAllGames();
-				System.out.println("display all the game result");
+				if(isGameStarted){
+				this.displayAllGames();
+				System.out.println("display all the game result");}
 				break;
 				
 			case 5:
+				if(isGameStarted){
 				System.out.println("display all the athlete result");
+				}
 				break;
 				
 			case 6:
@@ -117,9 +136,8 @@ public class DobleDriver {
 				db.getAthleteDataBase().loadAthlete(athleteList,numberOfAthletes,'S');
 				System.out.println("Size of athleteList after loading "+ this.athleteList.size());
 				System.out.println("Player has been loaded");
-				game = new Game(new Swimming(),athleteList);
+				this.game = new Game(new Swimming(),athleteList);
 				System.out.println("Game object has been created");
-				gameList.add(game);
 				System.out.println("Game has been added to the list");
 				
 			}
@@ -170,7 +188,14 @@ public class DobleDriver {
 	
 	
 	public void displayAllGames(){
-		System.out.println(gameList.size());
+		System.out.println("Total number of games played is "+gameList.size());
+		for(Game game: gameList){
+			System.out.println("====================");
+			System.out.println("Game ID: "+game.getGameID());
+			game.referee.displayResult();
+
+		}
+
 	}
 	
 	public void deleteAthleteList(){
@@ -178,4 +203,18 @@ public class DobleDriver {
 					
 	}
 
+
+	public void startGame(){
+		try{
+			this.game.initiateGame();
+			this.game.rewardWinner();
+			gameList.add(this.game);
+			System.out.println("====================== GAME STARTED ========================");
+		}
+		catch(Exception e){
+			//sc.next();
+			System.out.println("Something went wrong while starting Game");
+		}
+
+	}
 }

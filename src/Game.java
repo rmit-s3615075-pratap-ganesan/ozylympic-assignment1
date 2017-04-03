@@ -18,7 +18,7 @@ public class Game {
 	Athlete firstAthlete;
 	Athlete secondAthlete;
 	Athlete thirdAthlete;
-	static AthleteDataBase db;
+	AthleteDataBase db1;
 		
 	
 		
@@ -31,7 +31,8 @@ public class Game {
 			this.setEvent(event);
 			this.setGameID(event.getEventName()+event.getCount());
 			this.setAthleteList(athleteList);
-			//this.referee = db.assginReferee();
+			this.referee = AthleteDataBase.getAthleteDataBase().assginReferee();
+			System.out.println("In the game constructor"+ this.referee.getName());
 		}
 	
 	
@@ -63,12 +64,13 @@ public class Game {
 		
 		public void initiateGame(){
 			Athlete currentAthlete;
+			System.out.println("ashish"+this.athleteList.size());
 			Iterator iterator = this.athleteList.iterator();
 			while(iterator.hasNext()){
 				currentAthlete = (Athlete)iterator.next();
 				currentAthlete.compete(this.event.getminTimer(),this.event.getmaxTimer());
 			}
-						
+			System.out.println("Game has been initiated");
 		}
 		
 		
@@ -83,12 +85,13 @@ public class Game {
 			 this.thirdAthlete = (Athlete)toSort.get(2);
 			 this.thirdAthlete.setTotalPoints(this.thirdAthlete.getTotalPoints()+thirdPrize);
 			 this.referee.loadAthletes(toSort);
+			 this.referee.displayResult();
 			
 		 }
 
 		
 		public String getWinnerName(){
-			return this.firstAthlete.getAthleteName();
+			return this.firstAthlete.getName();
 			
 		}
 	    
