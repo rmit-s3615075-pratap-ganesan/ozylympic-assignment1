@@ -3,16 +3,23 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-
+/**
+ * 
+ * @author ASHISH
+ *
+ */
 public class AthleteDataBase {
 	
 	public static  Athlete athlete[];
 	public static Referee referee[];
-	Random randomGenerator = new Random();
+	Random randomGenerator = new Random();    //generating random number
 	int totalParticipatingAthletes = 26;
 	int totalParticipatingReferee = 5;
 	static AthleteDataBase db;
-	
+	/**
+	 * @description getting the instance of AthleteDatabase 
+	 * @return database object
+	 */ 
 	public static AthleteDataBase getAthleteDataBase(){
 		if(db!=null)
 			return db;
@@ -61,7 +68,12 @@ public class AthleteDataBase {
 		referee[4] = new Referee("Ref_E01","RefereeE",30,"RefeEState");
 		
 	}
-	
+	/**
+	 * @description loading the list of Athletes
+	 * @param athleteList list of athlete objects
+	 * @param numberOfAthletes number of Athletes participating
+	 * @param gameType type of event
+	 */
 public void loadAthlete(Set<Athlete> athleteList,int numberOfAthletes,char gameType){
 		
 		int randomNumber;
@@ -76,7 +88,6 @@ public void loadAthlete(Set<Athlete> athleteList,int numberOfAthletes,char gameT
 				try{
 				athleteList.add(this.athlete[randomNumber]);
 				assignedPlayer = true;
-			//	System.out.println(this.athlete[randomNumber].getAthleteId()+" "+this.athlete[randomNumber].getAthleteType());
 				}catch(Exception e){System.out.println("Cannot assign duplicate values");}		
 				
 				}
@@ -84,7 +95,10 @@ public void loadAthlete(Set<Athlete> athleteList,int numberOfAthletes,char gameT
 		}
 	}
 
-
+/**
+ * @description assigning Referee to Game
+ * @return assignedReferee object
+ */
  public Referee assginReferee(){
 	 Referee assignedReferee;
 	 assignedReferee =  referee[randomGenerator.nextInt(totalParticipatingReferee)];

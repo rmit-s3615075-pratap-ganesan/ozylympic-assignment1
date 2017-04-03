@@ -1,5 +1,9 @@
 import java.text.DecimalFormat;
-
+/**
+ * 
+ * @author PRATAP
+ *Running is inheriting the AbstractEvent
+ */
 public class Running extends AbstractEvent{
 	static int minTime=10;             //minimum time for the event running
 	static int maxTime=20;             // maximum time for the event running
@@ -10,7 +14,10 @@ public class Running extends AbstractEvent{
 	 public Running() {
 		super(minTime, maxTime);
 	 }
-
+	 /**
+	  * @description counting number of games
+	  * @return game counts
+	  */
 	@Override
 	public String getCount(){
 		DecimalFormat formatter = new DecimalFormat("00");
@@ -18,9 +25,10 @@ public class Running extends AbstractEvent{
 
 		return formatted;
 	}
-/*
- *overriding parent method to fetch name of event
- */
+	/**
+	 * @description fetching the name of event
+	 * @return String R to get name cycling
+	 */
 	@Override
 	public char getEventName() {
 		// TODO Auto-generated method stub

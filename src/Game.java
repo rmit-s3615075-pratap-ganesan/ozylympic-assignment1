@@ -6,7 +6,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-
+/**
+ * 
+ * @author PRATAP
+ * Game is initiating the game , rewarding winner and getting the name of winner
+ *
+ */
 public class Game {
 	int firstPrize = 5;
 	int secondPrize = 2;
@@ -32,7 +37,6 @@ public class Game {
 			this.setGameID(event.getEventName()+event.getCount());
 			this.setAthleteList(athleteList);
 			this.referee = AthleteDataBase.getAthleteDataBase().assginReferee();
-
 		}
 	
 	
@@ -61,9 +65,12 @@ public class Game {
 			this.gameID = gameID;
 		}
 		
-		
+	/**
+	 * @description initiating the game	
+	 */
 		public void initiateGame(){
 			Athlete currentAthlete;
+			System.out.println("ashish"+this.athleteList.size());
 			Iterator iterator = this.athleteList.iterator();
 			while(iterator.hasNext()){
 				currentAthlete = (Athlete)iterator.next();
@@ -72,7 +79,9 @@ public class Game {
 			System.out.println("Game has been initiated");
 		}
 		
-		
+		/**
+		 * @description rewarding the Athletes according to requirement
+		 */
 		public void rewardWinner(){
 			 List toSort = new ArrayList(this.athleteList);
 			 Collections.sort(toSort);
@@ -88,7 +97,7 @@ public class Game {
 			
 		 }
 
-		
+	
 		public String getWinnerName(){
 			return this.firstAthlete.getName();
 			
