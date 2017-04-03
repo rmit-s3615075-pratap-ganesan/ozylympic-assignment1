@@ -64,7 +64,7 @@ public class DobleDriver {
 			case 2:
 				if(isGameSelected){
 					isWinnerPredicted=true;
-					System.out.println("Predict user");
+					predictWinner();
 				}
 				else{
 					System.out.println("Please select the Game first");
@@ -78,6 +78,7 @@ public class DobleDriver {
 						isGameStarted = true;
 						isGameSelected = false;
 						isWinnerPredicted = false;
+						gameResult();
 					}
 					else{
 						System.out.println("Please predict the winner first");
@@ -230,6 +231,62 @@ public class DobleDriver {
 			System.out.println(athleteList.length);
 
 	}
+
+
+	public void predictWinner(){
+		try{
+			System.out.println("TOTAL NUMBER OF ATHLETES PLAYING THE GAME ARE : "+numberOfAthletes);
+			int i=1;
+			Iterator iterator = athleteList.iterator();
+			while(iterator.hasNext()){
+				currentAthlete = (Athlete)iterator.next();
+				System.out.println(i +")"+currentAthlete.getId());
+				i++;
+			}
+			System.out.println("========== Enter your Prediction ===========");
+			USER_PREDICTION =sc.nextInt()-1;
+			System.out.println("=================================");
+			List currentList = new ArrayList(this.athleteList);
+			int size=currentList.size()-1;
+			System.out.println("size value is "+size);
+			System.out.println("user prediction value is "+USER_PREDICTION);
+			if((USER_PREDICTION <= size) && !(USER_PREDICTION <0)){
+				Athlete currentAthlete = (Athlete)currentList.get(USER_PREDICTION);
+				System.out.println("User Choice is "+ currentAthlete.getName());
+			} else{
+				System.out.println("Please select player from menu Only");
+				predictWinner();
+			}
+		}
+		catch(Exception e){
+			sc.next();
+			System.out.println("Please try the correct option");
+			predictWinner();
+
+		}
+
+	}
+
+
+	public void gameResult(){
+		try{
+			List currentList = new ArrayList(this.athleteList);
+			Athlete currentAthlete = (Athlete)currentList.get(USER_PREDICTION);
+			System.out.println("Winner of this game is "+game.getWinnerName());
+			System.out.println("User Prediction for the game was "+currentAthlete.getName());
+			if(currentAthlete.equals(game.firstAthlete)){
+				System.out.println("=-=-=-=-=-=-=-=-=-=- Congrats User Prediction was correct =-=-=-=-=-=-=-=-=-=-");
+			}
+			else
+				System.out.println("========== User predicted Athlete was not in First place ==========");
+		}
+		catch(Exception e){
+			sc.next();
+			System.out.println("Please try again with valid entry");
+		}
+
+	}
+
 
 
 }
