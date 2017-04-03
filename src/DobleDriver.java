@@ -64,7 +64,8 @@ public class DobleDriver {
 			case 2:
 				if(isGameSelected){
 					isWinnerPredicted=true;
-					System.out.println("Predict user");}
+					System.out.println("Predict user");
+				}
 				else{
 					System.out.println("Please select the Game first");
 				}
@@ -75,6 +76,8 @@ public class DobleDriver {
 					if(isWinnerPredicted){
 						startGame();
 						isGameStarted = true;
+						isGameSelected = false;
+						isWinnerPredicted = false;
 					}
 					else{
 						System.out.println("Please predict the winner first");
@@ -88,17 +91,20 @@ public class DobleDriver {
 			case 4:
 				if(isGameStarted){
 				this.displayAllGames();
-				System.out.println("display all the game result");}
+				}
+				else
+					System.out.println("Please Play the Game first");
 				break;
 				
 			case 5:
 				if(isGameStarted){
 				System.out.println("display all the athlete result");
-				}
+				}else
+					System.out.println("Please select the Game first");
 				break;
 				
 			case 6:
-				System.exit(0) ;
+				System.out.println("Thank you BYE!");
 				break;
 				
 			default: 
@@ -107,10 +113,12 @@ public class DobleDriver {
 			}
 			
 			
-		}while(i!=6);
+		}while(selectedOption!=6);
 		}catch(Exception e){
 			System.out.println("Please enter a correct input");
+			sc.next();
 			menu();
+
 		}
 
 		
@@ -192,6 +200,7 @@ public class DobleDriver {
 		for(Game game: gameList){
 			System.out.println("====================");
 			System.out.println("Game ID: "+game.getGameID());
+			System.out.println("Referre name :"+game.referee.getName());
 			game.referee.displayResult();
 
 		}
@@ -213,8 +222,17 @@ public class DobleDriver {
 		}
 		catch(Exception e){
 			//sc.next();
-			System.out.println("Something went wrong while starting Game");
+			System.out.println("Game has been withdrawn due to heavy rain");
 		}
 
 	}
+
+
+	public void displayAllAthletePoints(){
+			Athlete[] athleteList = AthleteDataBase.athlete;
+			System.out.println(athleteList.length);
+
+	}
+
+
 }
