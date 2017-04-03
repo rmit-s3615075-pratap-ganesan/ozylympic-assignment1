@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
- * @author Pratap
+ * @author ASHISH
  */
 public class Driver {
 	
@@ -46,7 +46,7 @@ public class Driver {
 		try{
 		do{
 		System.out.println("===========================================\n"
-				+ "           OZYMPLIC GAMES\n"
+				+ "           OZYLYMPLIC GAMES\n"
 				+ "============================================\n"
 				+ "1. Select a Game to run \n"
 				+ "2. Predict the Winner of Game \n"
@@ -54,7 +54,8 @@ public class Driver {
 				+ "4. Display the final result of all Games\n"
 				+ "5. Display the points of all Athletes\n"
 				+ "6. Exit ");	
-			
+
+		System.out.print("Please enter your option: ");
 		selectedOption = sc.nextInt();
 			
 			switch(selectedOption){
@@ -104,7 +105,7 @@ public class Driver {
 				if(isGameStarted){
 					displayAllAthletePoints();
 				}else
-					System.out.println("Please select the Game first");
+					System.out.println("Please Play the Game first");
 				break;
 				
 			case 6:
@@ -133,9 +134,10 @@ public class Driver {
 	public void gameSelect(){
 		try{
 		System.out.println("========== PLEASE SELECT A GAME EVENT ==========");
-		System.out.println("1) SWIMMING \n");
-		System.out.println("2) RUNNING \n");
-		System.out.println("3) CYCLING \n");
+		System.out.println("1) SWIMMING");
+		System.out.println("2) RUNNING");
+		System.out.println("3) CYCLING");
+		System.out.print("Please enter your option: ");
 		selectedOption=sc.nextInt();
 		switch(selectedOption){
 		
@@ -143,7 +145,6 @@ public class Driver {
 			System.out.println("-------------- Game selected is SWIMMING --------------");
 			
 			if(checkForSufficientAthlete()){
-				System.out.println(" size is " +athleteList.size());
 				deleteAthleteList();
 				db.getAthleteDataBase().loadAthlete(athleteList,numberOfAthletes,'S');
 				this.game = new Game(new Swimming(),athleteList);
@@ -153,9 +154,35 @@ public class Driver {
 			 
 			break;
 
+			case 2:
+				System.out.println("-------------- Game selected is RUNNING --------------");
+
+				if(checkForSufficientAthlete()){
+					deleteAthleteList();
+					db.getAthleteDataBase().loadAthlete(athleteList,numberOfAthletes,'R');
+					this.game = new Game(new Running(),athleteList);
+				}
+				else
+					isGameSelected = false;
+
+				break;
+
+			case 3:
+				System.out.println("-------------- Game selected is CYCLING --------------");
+
+				if(checkForSufficientAthlete()){
+					deleteAthleteList();
+					db.getAthleteDataBase().loadAthlete(athleteList,numberOfAthletes,'C');
+					this.game = new Game(new Cycling(),athleteList);
+				}
+				else
+					isGameSelected = false;
+
+				break;
 			
 		default:
 			System.out.println("Please select the correct input");
+			gameSelect();
 			
 		
 		
@@ -182,7 +209,7 @@ public class Driver {
 		if(numberOfAthletes >= numberOfMandatoryAthletes)
 			isSufficient = true;
 		else
-			System.out.println("Game has been cancelled due to Insufficient Players");
+			System.out.println("Game has been cancelled due to Insufficient Players: "+numberOfAthletes);
 		return isSufficient;
 	}
 	
@@ -225,8 +252,6 @@ public class Driver {
 			for(int i=0; i< athleteList.length ; i++){
 				System.out.println("Name:  "+athleteList[i].getName()+"Total points: "+athleteList[i].getTotalPoints());
 			}
-			System.out.println(athleteList.length);
-
 	}
 
 
@@ -240,12 +265,11 @@ public class Driver {
 				System.out.println(i +")"+currentAthlete.getId());
 				i++;
 			}
-			System.out.println("========== Enter your Prediction ===========");
+			System.out.println("Please select your player: ");
 			USER_PREDICTION =sc.nextInt()-1;
 			System.out.println("=================================");
 			List currentList = new ArrayList(this.athleteList);
 			int size=currentList.size()-1;
-			System.out.println("user prediction value is "+USER_PREDICTION);
 			if((USER_PREDICTION <= size) && !(USER_PREDICTION <0)){
 				Athlete currentAthlete = (Athlete)currentList.get(USER_PREDICTION);
 				System.out.println("User Choice is "+ currentAthlete.getName());
