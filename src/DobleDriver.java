@@ -98,7 +98,7 @@ public class DobleDriver {
 				
 			case 5:
 				if(isGameStarted){
-				System.out.println("display all the athlete result");
+					displayAllAthletePoints();
 				}else
 					System.out.println("Please select the Game first");
 				break;
@@ -169,15 +169,9 @@ public class DobleDriver {
 			}
 		
 	}
-	
-	
-	
-	
-	
-	
-	/*
-	 * getting number of athletes participating using random number
-	 */
+
+
+
 	public int getNumberOfAthletes(){
 		numberOfAthletes= ran.nextInt(MAX_ATHLETES-MIN_ATHLETES)+MIN_ATHLETES;
 		return numberOfAthletes;
@@ -230,6 +224,9 @@ public class DobleDriver {
 
 	public void displayAllAthletePoints(){
 			Athlete[] athleteList = AthleteDataBase.athlete;
+			for(int i=0; i< athleteList.length ; i++){
+				System.out.println("Name:  "+athleteList[i].getName()+"Total points: "+athleteList[i].getTotalPoints());
+			}
 			System.out.println(athleteList.length);
 
 	}
