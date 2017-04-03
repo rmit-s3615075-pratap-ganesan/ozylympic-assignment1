@@ -1,11 +1,11 @@
 
-public abstract class Participants {
+public abstract class Participant {
 private String id;      //unique id of Participants
 private String name;    //name of participants
 private int age;        //age of participant
 private String state;   //state of participant
 
-public Participants(String id,String name,int age,String state){
+public Participant(String id,String name,int age,String state){
 	this.id=id;
 	this.name=name;
 	this.age=age;
