@@ -6,10 +6,13 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * @author Pratap
+ */
 public class DobleDriver {
 	
 	Scanner sc=new Scanner(System.in);    //taking user input
-	Random ran=new Random();              //generating random number
+	Random randomNumber =new Random();              //generating random number
 	Athlete currentAthlete;               //arraylist to store list of athletes playing in games
 	int USER_PREDICTION =0 ;              //storing user prediction
 	Game game;
@@ -31,8 +34,8 @@ public class DobleDriver {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		DobleDriver dbo = new DobleDriver();
-		dbo.menu();
+		DobleDriver driver = new DobleDriver();
+		driver.menu();
 		
 	}
 	
@@ -143,15 +146,10 @@ public class DobleDriver {
 				System.out.println(" size is " +athleteList.size());
 				deleteAthleteList();
 				db.getAthleteDataBase().loadAthlete(athleteList,numberOfAthletes,'S');
-				System.out.println("Size of athleteList after loading "+ this.athleteList.size());
-				System.out.println("Player has been loaded");
 				this.game = new Game(new Swimming(),athleteList);
-				System.out.println("Game object has been created");
-				System.out.println("Game has been added to the list");
-				
 			}
 			else
-				System.out.println(" add the code to de- initialize the game selection");
+				isGameSelected = false;
 			 
 			break;
 
@@ -174,14 +172,13 @@ public class DobleDriver {
 
 
 	public int getNumberOfAthletes(){
-		numberOfAthletes= ran.nextInt(MAX_ATHLETES-MIN_ATHLETES)+MIN_ATHLETES;
+		numberOfAthletes= randomNumber.nextInt(MAX_ATHLETES-MIN_ATHLETES)+MIN_ATHLETES;
 		return numberOfAthletes;
 	}
 	
 	
 	public boolean checkForSufficientAthlete(){
 		boolean isSufficient = false;
-		System.out.println(" number of Athletes"+numberOfAthletes);
 		if(numberOfAthletes >= numberOfMandatoryAthletes)
 			isSufficient = true;
 		else
@@ -248,7 +245,6 @@ public class DobleDriver {
 			System.out.println("=================================");
 			List currentList = new ArrayList(this.athleteList);
 			int size=currentList.size()-1;
-			System.out.println("size value is "+size);
 			System.out.println("user prediction value is "+USER_PREDICTION);
 			if((USER_PREDICTION <= size) && !(USER_PREDICTION <0)){
 				Athlete currentAthlete = (Athlete)currentList.get(USER_PREDICTION);
