@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Referee extends Participants{
+public class Referee extends Participant{
 
 	ArrayList<Athlete> athleteList;
 	final int firstPlace = 0;

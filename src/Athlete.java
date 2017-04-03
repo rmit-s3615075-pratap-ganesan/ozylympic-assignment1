@@ -3,20 +3,17 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
-public class Athlete implements Comparable<Athlete>, Comparator<Athlete> {
+public class Athlete extends Participant implements Comparable<Athlete>, Comparator<Athlete> {
 	
 	private int totalPoints;
-	private String athleteId;
-	private String athleteName;
-	private int athleteAge;
-	private String athleteState;
+	
 	private char athleteType;
 	private int finishTimer;
 	Set<Athlete> athleteList;
 	
 	public int getFinishTimer() {
 		return finishTimer;
-	}
+	} 
 
 
 	public void setFinishTimer(int finishTimer) {
@@ -29,46 +26,7 @@ public class Athlete implements Comparable<Athlete>, Comparator<Athlete> {
 	}
 
 
-	public String getAthleteId() {
-		return athleteId;
-	}
-
-
-	public void setAthleteId(String athleteId) {
-		this.athleteId = athleteId;
-	}
-
-
-	public String getAthleteName() {
-		return athleteName;
-	}
-
-
-	public void setAthleteName(String athleteName) {
-		this.athleteName = athleteName;
-	}
-
-
-	public int getAthleteAge() {
-		return athleteAge;
-	}
-
-
-	public void setAthleteAge(int athleteAge) {
-		this.athleteAge = athleteAge;
-	}
-
-
-	public String getAthleteState() {
-		return athleteState;
-	}
-
-
-	public void setAthleteState(String athleteState) {
-		this.athleteState = athleteState;
-	}
-
-
+	
 	public void setTotalPoints(int totalPoints) {
 		this.totalPoints = totalPoints;
 	}
@@ -86,10 +44,7 @@ public class Athlete implements Comparable<Athlete>, Comparator<Athlete> {
 	
 	
 	public Athlete(String athleteId, String athleteName, int athleteAge, String athleteState, char athleteType) {
-		this.athleteId = athleteId;
-		this.athleteName = athleteName;
-		this.athleteAge = athleteAge;
-		this.athleteState = athleteState;
+		super(athleteId,athleteName,athleteAge,athleteState);
 		this.athleteType = athleteType;
 	}
 
