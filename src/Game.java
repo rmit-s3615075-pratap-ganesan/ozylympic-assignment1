@@ -31,7 +31,7 @@ public class Game {
 			this.setEvent(event);
 			this.setGameID(event.getEventName()+event.getCount());
 			this.setAthleteList(athleteList);
-			this.referee = db.assginReferee();
+			//this.referee = db.assginReferee();
 		}
 	
 	

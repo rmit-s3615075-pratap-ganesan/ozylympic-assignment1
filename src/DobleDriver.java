@@ -113,7 +113,9 @@ public class DobleDriver {
 			
 			if(checkForSufficientAthlete()){
 				System.out.println(" size is " +athleteList.size());
+				deleteAthleteList();
 				db.getAthleteDataBase().loadAthlete(athleteList,numberOfAthletes,'S');
+				System.out.println("Size of athleteList after loading "+ this.athleteList.size());
 				System.out.println("Player has been loaded");
 				game = new Game(new Swimming(),athleteList);
 				System.out.println("Game object has been created");
@@ -172,8 +174,7 @@ public class DobleDriver {
 	}
 	
 	public void deleteAthleteList(){
-		Iterator<E> iterator = athleteList.iterator()
-				while(iterator.hasNext())
+		this.athleteList.clear();
 					
 	}
 

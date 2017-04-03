@@ -21,7 +21,7 @@ public class Referee extends Participants{
 		
 	}
 	
-	public void loadAthletes(List<Athlete> athleteList){
+	public void loadAthletes(List athleteList){
 		this.athleteList =  (ArrayList<Athlete>) athleteList;
 		
 	}

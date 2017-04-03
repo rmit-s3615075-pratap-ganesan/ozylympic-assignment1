@@ -11,8 +11,18 @@ public class AthleteDataBase {
 	Random randomGenerator = new Random();
 	int totalParticipatingAthletes = 26;
 	int totalParticipatingReferee = 5;
+	static AthleteDataBase db;
 	
-	public AthleteDataBase(){
+	public static AthleteDataBase getAthleteDataBase(){
+		if(db!=null)
+			return db;
+		else
+			db = new AthleteDataBase();
+		return db;
+		
+	}
+	
+	private AthleteDataBase(){
 		
 		athlete = new Athlete[totalParticipatingAthletes];
 		referee = new Referee[totalParticipatingReferee];
