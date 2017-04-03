@@ -32,7 +32,7 @@ public class Game {
 			this.setGameID(event.getEventName()+event.getCount());
 			this.setAthleteList(athleteList);
 			this.referee = AthleteDataBase.getAthleteDataBase().assginReferee();
-			System.out.println("In the game constructor"+ this.referee.getName());
+
 		}
 	
 	
@@ -64,7 +64,6 @@ public class Game {
 		
 		public void initiateGame(){
 			Athlete currentAthlete;
-			System.out.println("ashish"+this.athleteList.size());
 			Iterator iterator = this.athleteList.iterator();
 			while(iterator.hasNext()){
 				currentAthlete = (Athlete)iterator.next();
