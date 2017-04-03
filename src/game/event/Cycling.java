@@ -1,3 +1,4 @@
+package game.event;
 import java.text.DecimalFormat;
 /**
  * 

@@ -1,5 +1,10 @@
+package game.event;
 import java.text.DecimalFormat;
-
+/**
+ * 
+ * @author PRATAP
+ *
+ */
 public class Swimming extends AbstractEvent{
 	 static int minTime=100;          //minimum time for event Swimming
 	 static int maxTime=200;          //maximum time for event Swimming

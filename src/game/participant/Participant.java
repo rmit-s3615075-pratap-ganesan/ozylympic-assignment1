@@ -1,4 +1,9 @@
-
+package game.participant;
+/**
+ * 
+ * @author ASHISH
+ *
+ */
 public abstract class Participant {
 private String id;      //unique id of Participants
 private String name;    //name of participants

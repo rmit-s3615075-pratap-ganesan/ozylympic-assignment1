@@ -1,3 +1,5 @@
+
+package game.participant;
 import java.util.ArrayList;
 import java.util.List;
 /**

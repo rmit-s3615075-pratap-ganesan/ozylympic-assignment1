@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -5,6 +7,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+
+import game.controller.*;
+import game.participant.*;
+import game.event.*;
 
 /**
  * @author ASHISH
@@ -213,8 +219,8 @@ public class Driver {
 		for(Game game: gameList){
 			System.out.println("=============================");
 			System.out.println("Game ID: "+game.getGameID());
-			System.out.println("Referre name :"+game.referee.getName());
-			game.referee.displayResult();
+			System.out.println("Referre name :"+game.getReferee().getName());
+			game.getReferee().displayResult();
 
 		}
 
@@ -297,7 +303,7 @@ public class Driver {
 			Athlete currentAthlete = (Athlete)currentList.get(USER_PREDICTION);
 			System.out.println("Winner of this game is "+game.getWinnerName());
 			System.out.println("User Prediction for the game was "+currentAthlete.getName());
-			if(currentAthlete.equals(game.firstAthlete)){
+			if(currentAthlete.equals(game.getFirstAthlete())){
 				System.out.println("=-=-=-=-=-=-=-==- Congrats User Prediction was correct =-=-=-=-=-=-==-=-");
 			}
 			else

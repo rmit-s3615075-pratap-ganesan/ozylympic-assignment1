@@ -1,3 +1,6 @@
+package game.controller;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,6 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import game.participant.*;
+import game.event.*;
+
 /**
  * 
  * @author PRATAP
@@ -19,10 +25,50 @@ public class Game {
 	String gameID;
 	Event event;
 	Referee referee;
+	public Referee getReferee() {
+		return referee;
+	}
+
+
+	public void setReferee(Referee referee) {
+		this.referee = referee;
+	}
+
+
 	Set<Athlete> athleteList;
-	Athlete firstAthlete;
-	Athlete secondAthlete;
-	Athlete thirdAthlete;
+	private Athlete firstAthlete;
+	private Athlete secondAthlete;
+	private Athlete thirdAthlete;
+	public Athlete getFirstAthlete() {
+		return firstAthlete;
+	}
+
+
+	public void setFirstAthlete(Athlete firstAthlete) {
+		this.firstAthlete = firstAthlete;
+	}
+
+
+	public Athlete getSecondAthlete() {
+		return secondAthlete;
+	}
+
+
+	public void setSecondAthlete(Athlete secondAthlete) {
+		this.secondAthlete = secondAthlete;
+	}
+
+
+	public Athlete getThirdAthlete() {
+		return thirdAthlete;
+	}
+
+
+	public void setThirdAthlete(Athlete thirdAthlete) {
+		this.thirdAthlete = thirdAthlete;
+	}
+
+
 	AthleteDataBase db1;
 		
 	
