@@ -8,12 +8,13 @@ import java.util.Set;
 
 /**
  * @author ASHISH
+ * Driver is where all the user interaction is happening
  */
 public class Driver {
 	
-	Scanner sc=new Scanner(System.in);    //taking user input
-	Random randomNumber =new Random();              //generating random number
-	Athlete currentAthlete;               //arraylist to store list of athletes playing in games
+	Scanner sc=new Scanner(System.in);     //taking user input
+	Random randomNumber =new Random();     //generating random number
+	Athlete currentAthlete;              
 	int USER_PREDICTION =0 ;              //storing user prediction
 	Game game;
 	List<Game> gameList = new ArrayList<Game>();
@@ -22,9 +23,9 @@ public class Driver {
 	boolean isGameStarted;
 	int MAX_ATHLETES=8;                   //maximum athletes who can participate
 	int MIN_ATHLETES=2;                   //minimum athletes who can participate
-	int selectedOption;                            //storing user selection choice
+	int selectedOption;                   //storing user selection choice
 	int numberOfAthletes;
-	final int numberOfMandatoryAthletes = 5;
+	final int numberOfMandatoryAthletes = 5;    //least number of Athletes for game
 	Set<Athlete> athleteList = new HashSet<Athlete>();
 	AthleteDataBase db;
 	
@@ -39,12 +40,86 @@ public class Driver {
 		
 	}
 	
-	
-	
+	/**
+	 * @description menu to give user choices to run games and predict winners
+	 * @exception IOException On input error
+	 */
 	public void menu(){
 		int i =1;
 		try{
 		do{
+		options();
+		selectedOption = sc.nextInt();
+			switch(selectedOption){
+			case 1:
+				isGameSelected=true;
+				numberOfAthletes = getNumberOfAthletes();
+				gameSelect();
+				break;
+			case 2:
+				if(isGameSelected){
+					isWinnerPredicted=true;
+					predictWinner();
+				}
+				else
+					System.out.println("Please select the Game first");
+				break;
+			case 3:
+				if(isGameSelected){
+					if(isWinnerPredicted){
+						playGame();
+					}
+					else
+						System.out.println("Please predict the winner first");
+				}else{
+					System.out.println("Please select the Game first");
+				}
+				break;
+			case 4:
+				if(isGameStarted){
+				this.displayAllGames();
+				}
+				else
+					System.out.println("Please Play the Game first");
+				break;
+			case 5:
+				if(isGameStarted){
+					displayAllAthletePoints();
+				}else
+					System.out.println("Please Play the Game first");
+				break;
+			case 6:
+				System.out.println("Thank you BYE!");
+				break;	
+			default: 
+				System.out.println("Please select the correct input");
+			}
+		}while(selectedOption!=6);
+		}catch(Exception e){
+			System.out.println("Please enter a correct input");
+			sc.next();
+			menu();
+		}	
+	}
+	
+/**
+ * @description contains methods for game initialization	
+ */
+	private void playGame() {
+		startGame();
+		reset();
+		gameResult();
+	}
+/**
+ * @description Resets the value of boolean to false after one run of game
+ */
+	private void reset() {
+		isGameStarted = true;
+		isGameSelected = false;
+		isWinnerPredicted = false;
+	}
+
+	private void options() {
 		System.out.println("===========================================\n"
 				+ "           OZYLYMPLIC GAMES\n"
 				+ "============================================\n"
@@ -56,94 +131,23 @@ public class Driver {
 				+ "6. Exit ");	
 
 		System.out.print("Please enter your option: ");
-		selectedOption = sc.nextInt();
-			
-			switch(selectedOption){
-			case 1:
-				isGameSelected=true;
-				numberOfAthletes = getNumberOfAthletes();
-				gameSelect();
-				break;
-				
-			case 2:
-				if(isGameSelected){
-					isWinnerPredicted=true;
-					predictWinner();
-				}
-				else{
-					System.out.println("Please select the Game first");
-				}
-				break;
-			
-			case 3:
-				if(isGameSelected){
-					if(isWinnerPredicted){
-						startGame();
-						isGameStarted = true;
-						isGameSelected = false;
-						isWinnerPredicted = false;
-						gameResult();
-					}
-					else{
-						System.out.println("Please predict the winner first");
-					}
-
-				}else{
-					System.out.println("Please select the Game first");
-				}
-				break;
-				
-			case 4:
-				if(isGameStarted){
-				this.displayAllGames();
-				}
-				else
-					System.out.println("Please Play the Game first");
-				break;
-				
-			case 5:
-				if(isGameStarted){
-					displayAllAthletePoints();
-				}else
-					System.out.println("Please Play the Game first");
-				break;
-				
-			case 6:
-				System.out.println("Thank you BYE!");
-				break;
-				
-			default: 
-				System.out.println("Please select the correct input");
-			
-			}
-			
-			
-		}while(selectedOption!=6);
-		}catch(Exception e){
-			System.out.println("Please enter a correct input");
-			sc.next();
-			menu();
-
-		}
-
-		
 		
 	}
-	
-	
+/**
+ * @description Selecting the game to play
+ * @exception IOException On input error
+ */
 	public void gameSelect(){
 		try{
 		System.out.println("========== PLEASE SELECT A GAME EVENT ==========");
-		System.out.println("1) SWIMMING");
-		System.out.println("2) RUNNING");
-		System.out.println("3) CYCLING");
+		System.out.println("1) SWIMMING \n");
+		System.out.println("2) RUNNING \n");
+		System.out.println("3) CYCLING \n");
 		System.out.print("Please enter your option: ");
 		selectedOption=sc.nextInt();
 		switch(selectedOption){
-		
 		case 1:
 			System.out.println("-------------- Game selected is SWIMMING --------------");
-			
 			if(checkForSufficientAthlete()){
 				deleteAthleteList();
 				db.getAthleteDataBase().loadAthlete(athleteList,numberOfAthletes,'S');
@@ -151,12 +155,9 @@ public class Driver {
 			}
 			else
 				isGameSelected = false;
-			 
 			break;
-
 			case 2:
 				System.out.println("-------------- Game selected is RUNNING --------------");
-
 				if(checkForSufficientAthlete()){
 					deleteAthleteList();
 					db.getAthleteDataBase().loadAthlete(athleteList,numberOfAthletes,'R');
@@ -164,12 +165,9 @@ public class Driver {
 				}
 				else
 					isGameSelected = false;
-
 				break;
-
 			case 3:
 				System.out.println("-------------- Game selected is CYCLING --------------");
-
 				if(checkForSufficientAthlete()){
 					deleteAthleteList();
 					db.getAthleteDataBase().loadAthlete(athleteList,numberOfAthletes,'C');
@@ -177,15 +175,10 @@ public class Driver {
 				}
 				else
 					isGameSelected = false;
-
 				break;
-			
 		default:
 			System.out.println("Please select the correct input");
 			gameSelect();
-			
-		
-		
 		}
 		}
 		catch(Exception e){
@@ -193,9 +186,7 @@ public class Driver {
 			System.out.println("Please Provide Valid Input");
 			gameSelect();
 			}
-		
 	}
-
 
 
 	public int getNumberOfAthletes(){
@@ -203,7 +194,10 @@ public class Driver {
 		return numberOfAthletes;
 	}
 	
-	
+	/**
+	 * @description check if minimum number of athletes are participating or not
+	 * @return boolean isSufficient sufficient players are available or not
+	 */
 	public boolean checkForSufficientAthlete(){
 		boolean isSufficient = false;
 		if(numberOfAthletes >= numberOfMandatoryAthletes)
@@ -217,7 +211,7 @@ public class Driver {
 	public void displayAllGames(){
 		System.out.println("Total number of games played is "+gameList.size());
 		for(Game game: gameList){
-			System.out.println("====================");
+			System.out.println("=============================");
 			System.out.println("Game ID: "+game.getGameID());
 			System.out.println("Referre name :"+game.referee.getName());
 			game.referee.displayResult();
@@ -230,7 +224,10 @@ public class Driver {
 		this.athleteList.clear();
 					
 	}
-
+/**
+ * @description starting the game to play
+ * @exception IOException On input error
+ */
 
 	public void startGame(){
 		try{
@@ -240,12 +237,14 @@ public class Driver {
 			System.out.println("====================== GAME STARTED ========================");
 		}
 		catch(Exception e){
-			//sc.next();
+			sc.next();
 			System.out.println("Game has been withdrawn due to heavy rain");
 		}
 
 	}
-
+/**
+ * @description displaying points of all athletes
+ */
 
 	public void displayAllAthletePoints(){
 			Athlete[] athleteList = AthleteDataBase.athlete;
@@ -253,7 +252,10 @@ public class Driver {
 				System.out.println("Name:  "+athleteList[i].getName()+"Total points: "+athleteList[i].getTotalPoints());
 			}
 	}
-
+/**
+ * @description Predicting the winner of game
+ * @exception IOException On input error
+ */
 
 	public void predictWinner(){
 		try{
@@ -267,7 +269,7 @@ public class Driver {
 			}
 			System.out.println("Please select your player: ");
 			USER_PREDICTION =sc.nextInt()-1;
-			System.out.println("=================================");
+			System.out.println("====================================");
 			List currentList = new ArrayList(this.athleteList);
 			int size=currentList.size()-1;
 			if((USER_PREDICTION <= size) && !(USER_PREDICTION <0)){
@@ -282,12 +284,13 @@ public class Driver {
 			sc.next();
 			System.out.println("Please try the correct option");
 			predictWinner();
-
 		}
-
 	}
 
-
+/**
+ * @description Showing the result of game to user
+ * @exception IOException On input error
+ */
 	public void gameResult(){
 		try{
 			List currentList = new ArrayList(this.athleteList);
@@ -295,7 +298,7 @@ public class Driver {
 			System.out.println("Winner of this game is "+game.getWinnerName());
 			System.out.println("User Prediction for the game was "+currentAthlete.getName());
 			if(currentAthlete.equals(game.firstAthlete)){
-				System.out.println("=-=-=-=-=-=-=-=-=-=- Congrats User Prediction was correct =-=-=-=-=-=-=-=-=-=-");
+				System.out.println("=-=-=-=-=-=-=-==- Congrats User Prediction was correct =-=-=-=-=-=-==-=-");
 			}
 			else
 				System.out.println("========== User predicted Athlete was not in First place ==========");
